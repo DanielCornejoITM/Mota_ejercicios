@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "Dan";
+$password = "1234";
 $dbname = "archivos";
 
 // Create connection
@@ -15,4 +15,4 @@ if ($conn->connect_error) {
       
       ?>
     
-    
+    grant all privileges on archivos.* to 'Dan'@'localhost';
