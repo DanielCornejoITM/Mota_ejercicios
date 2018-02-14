@@ -1,0 +1,39 @@
+var keys: [String] = ["Uno","Dos","Tres","Cuatro"] //creamos areglo de llaves
+var values: [Int] = [1,2,3,4]               //creamos arreglo de valores
+
+var a = keys.count      //contamos cuantos valores tiene el arreglo 
+var b = values.count    //contamos cuantos valores tiene el arreglo 
+
+var Dictionari : [String:Int] = [:]   //creamos el diccionario vacío
+
+if a == b{ //comparamos que sean del mismo tamaño
+    var c = a - 1 
+    for i in 0...c {//recorremos el diccionario de acuerdo al numero de valores de los arreglos
+        Dictionari[keys[i]] = values[i] //asignamos llaves y valores
+    }
+    for(myKey,myValue) in Dictionari{ //recorremos el diccionario
+        print("La llave: \(myKey) cuenta con un valor de: \(myValue)")
+    }
+    
+    var cont = Dictionari.count
+    if (cont%2) == 0{
+        var a1 = keys[0]
+        var a2 = values[0]
+        var b1 = keys[c]                //invierte el primero y el ultimo valor si es par
+        var b2 = values[c]
+        Dictionari[a1]=b2
+        Dictionari[b1]=a2
+    }else{
+        var d = a + 1
+        Dictionari["Cero"]=0            //si es impar agrega cero al ultimo
+    }
+    
+    print("")
+    for(myKey,myValue) in Dictionari{ //recorremos el diccionario
+        print("La llave: \(myKey) cuenta con un valor de: \(myValue)")
+    }
+    
+}else{
+    print("los arreglos no son del mismo tamaño")
+}
+____________________________________________________________________________________________
