@@ -3,7 +3,7 @@
 
 session_start();
 if (!isset($_SESSION['ID'])) {
-header("Location:index.php");
+  header("Location:index.php");
 }
 
 ?>
@@ -11,47 +11,89 @@ header("Location:index.php");
 <html>
 <head>
   <script src="js/jquery-3.2.1.min.js"></script>
-	<title></title>
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <title></title>
 </head>
 <body>
 
-
-	<form method="post" id="frm_addfile" enctype="multipart/form-data" >
-<input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true" style="width: 400px;">
-<input type="button" class="btn btn-info" value="Subir" onclick="registrar_archivo()"/>
-</form>
-
+ <div class="container">
+   <div class="row">
+    <h1>Pagina para subir archivos</h1>
+    <div class="grid-example col s12 ">
 
 
+      <form method="post" id="frm_addfile" enctype="multipart/form-data" >
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>Archivo</span>
+       <input type="file" class="file" id="file_archivo" name="file_archivo[]" multiple="true" style="width: 400px;">
+      </div>
+      <div class="file-path-wrapper">
+           <input class="file-path validate" type="text">
+     
+      </div>
+      <a class="waves-effect waves-light btn" onclick="registrar_archivo()">Subir</a>
+    </div>
+  </form>
 
-<script type="text/javascript">
-	
+       
+      </form>
 
-	function registrar_archivo(){
-    alert("Entra registrar_Archivo js");
-  //Envía el tipo de funcion a través de un input, y se manda mediante todo el paquete del formulario ;)
-  var formData = new FormData(document.getElementById("frm_addfile")); //Guardamos todo el contenido del formulario en esta variable
-	//Es muy importante!.
+    </div>
 
+    <div class="divider"></div>
+    <div class="grid-example col s12 ">
 
-  //formData.append('carpeta', carpeta); //Ejemplo para enviar más datos que no están incluidos en el formulario. si creamos nuevas variables aquí en el js, y queremos enviarlas también al php hay que
-	//añadirlas al formulario, ya que necesitamos enviar todo empaquetado.
- /// formData.append('punto', num_punto); //(nombre de variable, y el valor de la varable).
+      <?php
+      include "conexion.php";
+      $sql = " select u.Nombre as Nombre ,a.Nombre as Archivo,a.Ubicacion as URL,a.Conteo as Conteo from  usuarios as u inner join archivos as a on u.PersID=a.PerID;";
+      $result = $conn->query($sql);
 
+      if ($result->num_rows > 0) {
+        echo " <table>
+        <thead>
+        <tr>
+        <th>Nombre Usuario</th>
+        <th>Archivo</th>
+        <th>Direccion</th>
+        <th>Numero de Descargas</th>
+        </tr>
+        </thead>
 
-	//Para enviar los datos del js se manda por ajax al PHP. HTML->JS->PHP
-  $.ajax({
-      url: "subir.php",
-      data: formData, //Es nuestro formulario a enviar al php
-      type: "post",
-      contentType: false, //Cosillas por default
-      processData: false,
-      success: function(data){
-        alert(data);
+        <tbody>";
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+          echo "  
+          <tr>
+          <td>".$row["Nombre"]."</td>
+          <td>".$row["Archivo"]."</td>
+          <td>
+          <a href='" . $row["URL"]. "' download='DESCARGA'>Archivo Descargado</a></td>
+          <td>" . $row["Conteo"]. "</td>
+          </tr>
+          ";
+        }
+        echo "  </tbody>
+        </table>";
+      } else {
+        echo "<h2>No hay Archivos</h2>";
       }
-    });
+      $conn->close();
+      ?>
 
-}
-</script>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/subir.js"></script>
 </body>
 </html>
