@@ -10,6 +10,7 @@ header("Location:index.php");
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="js/jquery-3.2.1.min.js"></script>
 	<title></title>
 </head>
 <body>
@@ -27,18 +28,16 @@ header("Location:index.php");
 	
 
 	function registrar_archivo(){
+    alert("Entra registrar_Archivo js");
   //Envía el tipo de funcion a través de un input, y se manda mediante todo el paquete del formulario ;)
   var formData = new FormData(document.getElementById("frm_addfile")); //Guardamos todo el contenido del formulario en esta variable
 	//Es muy importante!.
 
-  var orden_dia = $("#index_orden").val(); //Los dejo como ejemplo para obtener valores de otro input por su id.
-  var num_punto = $("#index_punto").val();
 
-
-  formData.append('carpeta', carpeta); //Ejemplo para enviar más datos que no están incluidos en el formulario. si creamos nuevas variables aquí en el js, y queremos enviarlas también al php hay que
+  //formData.append('carpeta', carpeta); //Ejemplo para enviar más datos que no están incluidos en el formulario. si creamos nuevas variables aquí en el js, y queremos enviarlas también al php hay que
 	//añadirlas al formulario, ya que necesitamos enviar todo empaquetado.
-  formData.append('punto', num_punto); //(nombre de variable, y el valor de la varable).
-  formData.append('orden_dia', orden_dia);
+ /// formData.append('punto', num_punto); //(nombre de variable, y el valor de la varable).
+
 
 	//Para enviar los datos del js se manda por ajax al PHP. HTML->JS->PHP
   $.ajax({
@@ -48,8 +47,7 @@ header("Location:index.php");
       contentType: false, //Cosillas por default
       processData: false,
       success: function(data){
-        showFilesViewer(); //ejemplo de algunas funciones a ejecutar una vez que se realiza con exito lo del php
-        hideAddFil();
+        alert(data);
       }
     });
 

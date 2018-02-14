@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-
+<head>
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<script src="js/jquery-3.2.1.min.js"></script>
 <style>
 body {
   display: flex;
