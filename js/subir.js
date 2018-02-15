@@ -18,3 +18,21 @@
  
 
 }
+
+function aumentarCont(id_archivo){
+  alert("Aumentando contador"+id_archivo);
+  var id = parseInt(id_archivo); 
+
+   $.ajax({
+      url: "contador.php",
+      data: {"id": id}, //Es nuestro formulario a enviar al php
+      type: "post",
+      success: function(data){
+       // alert(data);
+        location.reload(true);
+
+      }
+
+    });
+
+}

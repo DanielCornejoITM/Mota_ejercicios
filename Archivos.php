@@ -46,7 +46,8 @@ if (!isset($_SESSION['ID'])) {
 
       <?php
       include "conexion.php";
-      $sql = " select u.Nombre as Nombre ,a.Nombre as Archivo,a.Ubicacion as URL,a.Conteo as Conteo from  usuarios as u inner join archivos as a on u.PersID=a.PerID;";
+
+      $sql = " select u.Nombre as Nombre ,a.Nombre as Archivo,a.Ubicacion as URL,a.Conteo as Conteo, a.ArchID as ID from  usuarios as u inner join archivos as a on u.PersID=a.PerID;";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -68,7 +69,9 @@ if (!isset($_SESSION['ID'])) {
           <td>".$row["Nombre"]."</td>
           <td>".$row["Archivo"]."</td>
           <td>
-          <a href='" . $row["URL"]. "' download='DESCARGA'>Archivo Descargado</a></td>
+
+          <a href='" . $row["URL"]. "' onclick='aumentarCont(".$row["ID"].")' download='DESCARGA'>
+          Archivo Descargado</a></td>
           <td>" . $row["Conteo"]. "</td>
           </tr>
           ";
