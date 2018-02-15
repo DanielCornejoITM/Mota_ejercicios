@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "oso";
-$password = "1234";
+$username = "root";
+$password = "";
 $dbname = "archivos";
 
 // Create connection
