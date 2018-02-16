@@ -4,7 +4,7 @@ session_start();
 include"conexion.php";
 
 
-$target_path = "../Mota_ejercicios/uploads/";
+$target_path = "/opt/lampp/htdocs/uploads/";
 
   //----------Subir cada uno de los archivos a la carpeta del servidor
     foreach ($_FILES['file_archivo']['name'] as $i => $name) { //file_archivo es la id del input type=file. El name así déjalo. 

@@ -69,9 +69,11 @@ if (!isset($_SESSION['ID'])) {
           <td>".$row["Nombre"]."</td>
           <td>".$row["Archivo"]."</td>
           <td>
-
-          <a href='" . $row["URL"]. "' onclick='aumentarCont(".$row["ID"].")' download='DESCARGA'>
-          Archivo Descargado</a></td>
+          <form action='Descarga.php' method='get'>
+          <input style='display: none' name='id' value='".$row["ID"]."'></input>
+          <button type='submit' class='waves-effect waves-light btn' onclick='aumentarCont(".$row["ID"].")'>Descargar</button>
+          </form>
+          </td>
           <td>" . $row["Conteo"]. "</td>
           </tr>
           ";

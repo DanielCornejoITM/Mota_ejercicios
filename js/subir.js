@@ -25,7 +25,7 @@ function aumentarCont(id_archivo){
    $.ajax({
       url: "contador.php",
       data: {"id": id}, //Es nuestro formulario a enviar al php
-      type: "post",
+      type: "get",
       success: function(data){
         location.reload(true);
 
