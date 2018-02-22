@@ -1,0 +1,72 @@
+CÓDIGO PARA REGISTRAR NUEVOS USUARIOS
+
+
+
+********** HTML ********************************
+
+
+  <form enctype="multipart/form-data" action="" method="POST" class="forma">
+
+    <center><legend>Datos del usuario</legend>
+      <br><br>
+
+    <table id="newUser" style="width: 400px;">
+      <tr>
+        <td colspan="2"><label class="Lform">Nombre: </label></td>
+        <td colspan="2"><input type="text" class="fsesion" style="width:100%;" id="userName" name="nombre" placeholder="Nombre de usuario"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><label>Contraseña: </label></td>
+        <td colspan="2"><input type="text" class="fsesion" style="width:100%;" id="userPass" name="password" placeholder="Asignar contraseña"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><label>Descripción: </label></td>
+        <td colspan="2"><input type="text" class="fsesion" style="width:100%;" id="userDesc" name="descripcion" placeholder="Nota o recordatorio"></td>
+      </tr>
+    </table>
+    </br></br>
+    <center><input class="btn btn-info" onclick="addUser()" value="Registrar"></center>
+  </center>
+    </div>
+    </form>
+
+
+
+**************** Javascript **********************
+
+function addUser(){
+  var nombreUsuario = $("#userName").val();
+  var passUsuario = $("#userPass").val();
+  var notaUsuario = $("#userDesc").val();
+
+  alert("Datos obtenidos correctamente "+nombreUsuario+" "+passUsuario+" "+tipoUsuario);
+
+
+  $.ajax({
+     url: "../consejo_tecnico/conexiones/administracion.php",
+     data: {"username":nombreUsuario,"password":passUsuario, "nota": notaUsuario, "funcion":0},
+     type: "post",
+      success: function(data){
+          alert("Registro de usuario exitoso "+data);
+
+      },
+      failure: function(){
+        alert("No se pudo registrar el nuevo usuario");
+      }
+    });
+}
+
+*************** PHP ******************************
+
+function RegistrarUsuario(){
+    include "conexion.php";
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $note = $_POST['nota'];
+    echo "Tipo = ".$type;
+    
+    $query= mysqli_query($con, "INSERT INTO users( usuario, password, nota) VALUES ('$username', SHA('$password'),'$note')");
+
+  }
+
