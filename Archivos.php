@@ -88,14 +88,9 @@ if (!isset($_SESSION['ID'])) {
 
     </div>
   </div>
-
-
-
-
-
-
-
-
+  <div class="logout" style="margin-top: 30px; marging-bottom: 20px;">
+  <center><a href="logout.php">Cerrar sesión</a></center>
+  </div>
 
 </div>
 <script type="text/javascript" src="js/materialize.min.js"></script>

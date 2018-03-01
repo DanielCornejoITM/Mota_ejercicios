@@ -34,3 +34,8 @@ function aumentarCont(id_archivo){
     });
 
 }
+
+function showAddUser(){
+ document.getElementById("registro").style.display="block";
+ document.getElementById("login").style.display="none";
+}
